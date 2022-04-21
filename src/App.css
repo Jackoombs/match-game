@@ -35,6 +35,7 @@ h1 {
 }
 
 main {
+  padding: 2vw;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
 }
@@ -45,6 +46,8 @@ main {
   grid-template-columns: repeat(4, 1fr);
 }
 .card {
+  justify-self: center;
+  cursor: pointer;
   height: 10vw;
   width: 10vw;
   background-color: rgba(255, 255, 255, 0.7);
@@ -61,3 +64,34 @@ main {
   height: 12vw;
   width: auto;
 }
+
+.score-board {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px black solid;
+  border-radius: 15px;
+  padding: 1vw;
+  font-size: 2vw;
+  height: fit-content;
+  text-align: center;
+}
+
+.init-modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  background-image: url(./wrong.svg);
+  background-size: 100%;
+  transition-duration: 0.2s;
+}
+
+.on-wrong-click {
+  width: 30vw;
+  height: 30vw;
+  opacity: 1;
+}
+

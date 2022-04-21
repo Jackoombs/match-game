@@ -1,39 +1,26 @@
 import React, { useEffect, useState } from "react";
 import PokemonCards from "./PokemonCards";
+import ScoreBoard from "./ScoreBoard";
+import WrongClick from "./WrongClick"
 
 function Main() {
 
-  const [pokemonArray, setPokemonArray] = useState([])
+  const [score, setScore] = useState(0)
+  const [showWrongClick, setShowClick] = useState(false)
 
-  useEffect(() => {
-    console.log('hi')
-    createPokemonArray()
-  },[])
-
-  const createArray = () => {
-    const array = [];
-    while(array.length < 12){
-      const r = Math.floor(Math.random() * 151) + 1;
-      if(array.indexOf(r) === -1) array.push(r);
-    }
-    return(array);
+  const triggerWrongClick = () => {
+    setShowClick(true)
   }
 
-  const getPokemon = async (id) => {
-    const reponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-    const data = await reponse.json()
-    return data
-  }
-
-  const createPokemonArray = async () => {
-    const array = createArray()
-    const pokemonArray = await Promise.all(array.map((id) => getPokemon(id)))
-    setPokemonArray(pokemonArray)
+  const resetModal = () => {
+    setShowClick(false)
   }
 
   return (
     <main>
-      <PokemonCards {...{pokemonArray}}/> 
+      <PokemonCards {...{score, setScore, triggerWrongClick}}/> 
+      <ScoreBoard {...{score}}/>
+      {showWrongClick?<WrongClick {...{resetModal}}/>:""}
     </main>
   )
 }
