@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PokemonCards from "./PokemonCards";
 import ScoreBoard from "./ScoreBoard";
 import WrongClick from "./WrongClick"
+import Instructions from "./Instructions";
 
 function Main() {
 
@@ -23,6 +24,7 @@ function Main() {
 
   return (
     <main>
+      <Instructions />
       <PokemonCards {...{score, setScore, checkHighScore, triggerWrongClick}}/> 
       <ScoreBoard {...{score, highScore}}/>
       {showWrongClick?<WrongClick {...{resetModal}}/>:""}

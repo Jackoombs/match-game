@@ -95,3 +95,15 @@ main {
   opacity: 1;
 }
 
+.instructions {
+
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px black solid;
+  border-radius: 15px;
+  padding: 1vw;
+  font-size: 1.5vw;
+  height: fit-content;
+  text-align: left;
+  
+}
+
