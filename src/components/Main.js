@@ -6,7 +6,12 @@ import WrongClick from "./WrongClick"
 function Main() {
 
   const [score, setScore] = useState(0)
+  const [highScore, setHighScore] = useState(0)
   const [showWrongClick, setShowClick] = useState(false)
+
+  const checkHighScore = () => {
+    if (score > highScore) setHighScore(score)
+  }
 
   const triggerWrongClick = () => {
     setShowClick(true)
@@ -18,8 +23,8 @@ function Main() {
 
   return (
     <main>
-      <PokemonCards {...{score, setScore, triggerWrongClick}}/> 
-      <ScoreBoard {...{score}}/>
+      <PokemonCards {...{score, setScore, checkHighScore, triggerWrongClick}}/> 
+      <ScoreBoard {...{score, highScore}}/>
       {showWrongClick?<WrongClick {...{resetModal}}/>:""}
     </main>
   )

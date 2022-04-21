@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
-function PokemonCards({score, setScore, triggerWrongClick}) {
+function PokemonCards({score, setScore, checkHighScore,triggerWrongClick}) {
 
   const [pokemonArray, setPokemonArray] = useState([])
   const [order, setOrder] = useState([])
@@ -17,7 +17,10 @@ function PokemonCards({score, setScore, triggerWrongClick}) {
   },[])
 
   useEffect(() => {
-    console.log(hasClicked)
+    if (hasClicked.every((element) => element === true)) {
+      createPokemonArray()
+      setHasClicked(Array(12).fill(false))
+    }
   },[hasClicked])
 
   const randomOrderArray = () => {
@@ -50,13 +53,10 @@ function PokemonCards({score, setScore, triggerWrongClick}) {
     setPokemonArray(pokemonArray)
   }
 
-  // const triggerWrongClick = () => {}
-  
-
   return (
     <div className="pokemon-cards">
         {pokemonArray.map((pokemon, index) => (
-          <Card key={index} {...{pokemon, index, score, setScore, order, setOrder, hasClicked, setHasClicked, randomOrderArray, createPokemonArray, triggerWrongClick}}/>
+          <Card key={index} {...{pokemon, index, score, setScore, checkHighScore, order, setOrder, hasClicked, setHasClicked, randomOrderArray, createPokemonArray, triggerWrongClick}}/>
         ))}
     </div>
   )
